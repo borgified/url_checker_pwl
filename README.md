@@ -13,9 +13,8 @@ results are displayed at STDOUT
 
 to run this script:
 
-  git clone https://github.com/borgified/url_checker_pwl.git
-
-  cd url_checker_pwl
-
-  ./run
-
+```
+git clone https://github.com/borgified/url_checker_pwl.git
+cd url_checker_pwl
+./run
+```
