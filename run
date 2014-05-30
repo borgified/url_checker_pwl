@@ -1,2 +1,2 @@
-./url_checker.pl_pwl | tee output.txt
+./url_checker_pwl.pl | tee output.txt
 grep -v good output.txt

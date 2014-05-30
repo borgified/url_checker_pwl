@@ -6,33 +6,26 @@ use LWP::UserAgent;
 use HTTP::Cookies;
 use URI::Find::UTF8;
 
-#check if we have the original vhf/free-programming-books repo pulled down
+#check if we have the original papers-we-love/papers-we-love repo pulled down
 #if not, do it, if so, grab the latest version
 
-if(-d "free-programming-books"){
-	chdir("free-programming-books");
+if(-d "papers-we-love"){
+	chdir("papers-we-love");
 	#grab the latest changes
 	system("git pull origin master");
 	chdir("../.");
 }else{
-	system("git clone https://github.com/vhf/free-programming-books.git");
+	system("git clone https://github.com/papers-we-love/papers-we-love.git");
 }
 
-chdir("free-programming-books");
-my @books = <free-programming-books*.md>;
+my @readmes = split(/\n/,`find . | grep -i readme.md`);
 
-#gotta add 2 more books that dont conform to the usual naming convention
-push(@books,'free-programming-interactive-tutorials-en.md');
-push(@books,'javascript-frameworks-resources.md');
-push(@books,'free-courses-en.md');
-# @books now contains all the different "books".md
-
+#print "@readmes";
 
 my %db;
 
-
 #read all the contents of each *.md file inside @books and put it into %db
-foreach my $book (@books){
+foreach my $book (@readmes){
 	local $/ = undef;
 	open FILE, "$book" or die "Couldn't open file: $!";
 	my $content = <FILE>;
